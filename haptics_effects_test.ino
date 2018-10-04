@@ -29,74 +29,77 @@ void setup()
   
   HMD.begin();
   HMD.Mode(0);           // Internal trigger input mode -- Must use the GO() function to trigger playback.
-  HMD.MotorSelect(0xB9); //0x36 // ERM motor, 4x Braking, Medium loop gain, 1.365x back EMF gain
-  HMD.Library(6);        //1-5 & 7 for ERM motors, 6 for LRA motors 
+  HMD.MotorSelect(0x36); //0x36 // ERM motor, 4x Braking, Medium loop gain, 1.365x back EMF gain
+  HMD.Library(2);        //1-5 & 7 for ERM motors, 6 for LRA motors 
 
 }
 void loop() 
 {
-  //uint32_t t = millis(); 
-  if(Serial.available()){
-      duration = 0;
-      int buff = Serial.available();
-      for(uint8_t i = 0; i < buff; i++){
-          char c = (char)Serial.read();
-          if(c == '\r')
-          {
-             // do nothing 
-          }
-          else if(c == '\n')
-          {
-              break;
-          }
-          else if(c == ';')
-          {
-              data_index++;
-          }
-          else{
-              switch(data_index)
-              {
-                  case 0:
-                      finger = (finger * 10) +  c - '0';
-                      break;
-                  case 1: 
-                      wave[0] = (wave[0] * 10) + c - '0'; 
-                      break;
-                  case 2: 
-                      duration = (duration * 10) + c - '0';
-                      break;
-                  default:
-                      break;
-              }
-              
-          }
-                     
-      }
-     
-      if(wave[0] > 64)sequence = int((wave[0] - 64) / 8);
-      else sequence = int(wave[0] / 8);
-
-      Serial.print("Finger: "); Serial.println(finger);
-      Serial.print("sequence: ");Serial.println(sequence);
-      Serial.print("wave: ");Serial.println(wave[0]);
-      Serial.print("Duration: ");Serial.println(duration);
-      
-      if(wave[0] > 0){
-          HMD.Waveform(sequence, wave[0]);
-          HMD.go();
-          timeTrack = millis();
-          triggered = true;
-      }   
-      
-      data_index = 0;
-      finger = 0;
-      wave[0] = 0;
-  } 
-  if(millis() - timeTrack >= duration && triggered){
-      HMD.stop();
-      //Serial.println(duration);
-      triggered = false;
-  }
+    
+//  //uint32_t t = millis(); 
+//  if(Serial.available()){
+//      duration = 0;
+//      int buff = Serial.available();
+//      for(uint8_t i = 0; i < buff; i++){
+//          char c = (char)Serial.read();
+//          if(c == '\r')
+//          {
+//             // do nothing 
+//          }
+//          else if(c == '\n')
+//          {
+//              break;
+//          }
+//          else if(c == ';')
+//          {
+//              data_index++;
+//          }
+//          else{
+//              switch(data_index)
+//              {
+//                  case 0:
+//                      finger = (finger * 10) +  c - '0';
+//                      break;
+//                  case 1: 
+//                      wave[0] = (wave[0] * 10) + c - '0'; 
+//                      break;
+//                  case 2: 
+//                      duration = (duration * 10) + c - '0';
+//                      break;
+//                  default:
+//                      break;
+//              }
+//              
+//          }
+//                     
+//      }
+//     
+//      if(wave[0] > 64)sequence = int((wave[0] - 64) / 8);
+//      else sequence = int(wave[0] / 8);
+//
+//      Serial.print("Finger: "); Serial.println(finger);
+//      Serial.print("sequence: ");Serial.println(sequence);
+//      Serial.print("wave: ");Serial.println(wave[0]);
+//      Serial.print("Duration: ");Serial.println(duration);
+//      
+//      if(wave[0] > 0){
+//          HMD.Waveform(sequence, wave[0]);
+//          HMD.go();
+//          timeTrack = millis();
+//          triggered = true;
+//      }   
+//      
+//      data_index = 0;
+//      finger = 0;
+//      wave[0] = 0;
+//  } 
+//  if(millis() - timeTrack >= duration && triggered){
+//      HMD.stop();
+//      //Serial.println(duration);
+//      triggered = false;
+//  }
+  
+  wave_test();
   //Serial.println(1000 / (millis() - t));
 }
 
