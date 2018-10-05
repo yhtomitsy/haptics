@@ -3,7 +3,7 @@
 
 SFE_HMD_DRV2605L HMD; //Create haptic motor driver object 
 
-
+#define MOTOR 6          // 1-5 & 7 for ERM motors, 6 for LRA motors
 #define trig_Pin 2
 #define waitTime 50
 #define I2C_ADDR 0x5A
@@ -20,19 +20,20 @@ int duration = 0;
 
 void setup() 
 {
-  pinMode(trig_Pin, OUTPUT);
-  digitalWrite(trig_Pin, LOW);
-  
-  Serial.begin(9600);
-  Wire.begin();
-  Wire.setClock(400000); //Increase I2C data rate to 400kHz
-  
-  HMD.begin();
-  HMD.Mode(0);           // Internal trigger input mode -- Must use the GO() function to trigger playback.
-  HMD.MotorSelect(0x36); //0x36 // ERM motor, 4x Braking, Medium loop gain, 1.365x back EMF gain
-  HMD.Library(2);        //1-5 & 7 for ERM motors, 6 for LRA motors 
-
+    pinMode(trig_Pin, OUTPUT);
+    digitalWrite(trig_Pin, LOW);
+    
+    Serial.begin(9600);
+    Wire.begin();
+    Wire.setClock(400000); //Increase I2C data rate to 400kHz
+    
+    HMD.begin();
+    HMD.Mode(0);                         // Internal trigger input mode -- Must use the GO() function to trigger playback.
+    if(MOTOR == 6)HMD.MotorSelect(0xB6); // 0xB9 // LRA motor, 4x Braking, Medium loop gain, 7.5x back EMF gain
+    else HMD.MotorSelect(0x36);          // 0x36 // ERM motor, 4x Braking, Medium loop gain, 1.365x back EMF gain
+    HMD.Library(MOTOR);                      // 1-5 & 7 for ERM motors, 6 for LRA motors 
 }
+
 void loop() 
 {
     

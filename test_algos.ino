@@ -1,6 +1,6 @@
 
 void wave_test(){
-    for(finger = 1; finger <= 123; finger++){  // scroll through effects
+    for(finger = 1; finger <= 117; finger++){  // scroll through effects
         if(Serial.available()){
             finger = 0;
             duration = 0;
@@ -47,13 +47,13 @@ void wave_test(){
         /*if(finger % 8 == 0) sequence = int(finger / 8) - 1;
         else sequence = int(finger / 8);
         if(finger > 64)sequence -= 8;*/
-        
+        Serial.print("Effect:");Serial.println(finger);
         HMD.Waveform(0, finger);
         HMD.Waveform(1, 0);
         HMD.go();
         delay(2000);
         //Serial.print("Sequence:");Serial.print(sequence);Serial.print("  ");
-        Serial.print("Effect:");Serial.println(finger);
+        
         
         
         /*for(int j = 40; j <= 320; j+=20){
