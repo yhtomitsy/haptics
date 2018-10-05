@@ -44,22 +44,25 @@ void wave_test(){
         
         
         
-        if(finger % 8 == 0) sequence = int(finger / 8) - 1;
+        /*if(finger % 8 == 0) sequence = int(finger / 8) - 1;
         else sequence = int(finger / 8);
-        if(finger > 64)sequence -= 8;
+        if(finger > 64)sequence -= 8;*/
         
-        HMD.Waveform(sequence, finger);
-        Serial.print("Sequence:");Serial.print(sequence);Serial.print("  ");
-        Serial.print("wave:");Serial.println(finger);
+        HMD.Waveform(0, finger);
+        HMD.Waveform(1, 0);
+        HMD.go();
+        delay(2000);
+        //Serial.print("Sequence:");Serial.print(sequence);Serial.print("  ");
+        Serial.print("Effect:");Serial.println(finger);
         
         
-        for(int j = 40; j <= 320; j+=20){
+        /*for(int j = 40; j <= 320; j+=20){
             Serial.println(j);
             HMD.go();
             delay(j);
             HMD.stop();
             delay(1000);
-        }
+        }*/
         
     }
 }

@@ -36,7 +36,7 @@ void setup()
 void loop() 
 {
     
-//  //uint32_t t = millis(); 
+  //uint32_t t = millis(); 
 //  if(Serial.available()){
 //      duration = 0;
 //      int buff = Serial.available();
@@ -83,7 +83,8 @@ void loop()
 //      Serial.print("Duration: ");Serial.println(duration);
 //      
 //      if(wave[0] > 0){
-//          HMD.Waveform(sequence, wave[0]);
+//          HMD.Waveform(0, wave[0]);
+//          HMD.Waveform(1, 0);
 //          HMD.go();
 //          timeTrack = millis();
 //          triggered = true;
@@ -94,7 +95,7 @@ void loop()
 //      wave[0] = 0;
 //  } 
 //  if(millis() - timeTrack >= duration && triggered){
-//      HMD.stop();
+//      //HMD.stop();
 //      //Serial.println(duration);
 //      triggered = false;
 //  }
