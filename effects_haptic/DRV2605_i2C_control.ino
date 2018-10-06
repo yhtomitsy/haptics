@@ -3,8 +3,8 @@ bool DRVInit()
     //Get a read from the status register
     //Want this to Read 0xE0, any other value than 0 and you have tripped the over-current protection=wrong motor
     uint8_t status = readDRV2605L(STATUS_REG);
-//    Serial.print("Status Register 0x"); 
-//    Serial.println(status, HEX);
+    Serial.print("Status Register 0x"); 
+    Serial.println(status, HEX);
     if(status == 0xE0)return true;
     else return false;
     
