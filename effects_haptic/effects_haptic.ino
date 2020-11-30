@@ -1,4 +1,4 @@
-#include <Sparkfun_DRV2605L.h> //SparkFun Haptic Motor Driver Library 
+//#include <Sparkfun_DRV2605L.h> //SparkFun Haptic Motor Driver Library 
 #include <Wire.h> //I2C library 
 
 #define TCAADDR 0x70
@@ -132,7 +132,7 @@
 //This bit reports the measurement of the LRA resonance period
 #define LRARESPERIOD_REG 0x22
 
-SFE_HMD_DRV2605L HMD; //Create haptic motor driver object 
+//SFE_HMD_DRV2605L HMD; //Create haptic motor driver object 
 
 int EN_Pins[] = {35, 14, 16, 20, 22};
 int IN_Pins[] = {36, 15, 17, 21, 23};

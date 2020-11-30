@@ -3,7 +3,7 @@
 
 #define TCAADDR 0x70
 #define touchButton 2
-#define MOTOR 2          // 1-5 & 7 for ERM motors, 6 for LRA motors
+#define MOTOR 6          // 1-5 & 7 for ERM motors, 6 for LRA motors
 
 //I2C address
 #define I2C_ADDR 0x5A
@@ -135,7 +135,7 @@
 SFE_HMD_DRV2605L HMD; //Create haptic motor driver object 
 
 int EN_Pins[] = {35, 14, 16, 20, 22};
-int IN_Pins[] = {36, 15, 17, 21, 23};
+int IN_Pins[] = {4, 15, 17, 21, 23};
 
 byte state[5] = {0};          // state of enable/trigger pin
 int inWave = 0;               // incoming wave effect number
